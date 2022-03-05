@@ -1,0 +1,50 @@
+game = """     
+~~~~~~~~~~~~~
+|   |   |   |
+~~~~~~~~~~~~~
+|   |   |   |
+~~~~~~~~~~~~~
+|   |   |   |
+~~~~~~~~~~~~~ """
+
+win = False
+
+xo = input("would you like to play with x or o? ")
+ 
+    
+def p():
+ global game
+ global win
+ while win == False:
+  spots = {
+    "TL": 22,
+    "TC": 26,
+    "TR": 30,
+    "L": 50,
+    "C": 54,
+    "R": 58,
+    "BL": 78,
+    "BC": 82,
+    "BR": 86
+ }
+  place = input("""
+ Where would you like to place your piece?
+     TL         TC         TR
+     L          C          R
+     BL         BC         BR
+""")
+  LL = (spots[place])
+  if game[int(LL)] != " ":
+   print("error spot taken")
+  elif game[int(LL)] == " ":
+   game = game[:LL] + xo + game[LL+1:]
+   print(game)
+   win_check = [len(x) + 1 for x in game.split(str(xo))[1:-1]]
+   size = len(win_check)
+   for i in range(size - 1):
+    if win_check[i] != win_check[i + 1]:
+    elif win_check[i] == win_check[i + 1]:
+     win = True
+     print('You won')
+     
+p()
